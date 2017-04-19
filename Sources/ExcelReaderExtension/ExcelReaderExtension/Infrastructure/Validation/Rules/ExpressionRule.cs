@@ -6,19 +6,19 @@ namespace ExcelReaderExtension.Infrastructure.Validation.Rules
 {
     public class ExpressionRule<T> : IValidationRule
     {
-        private readonly T input;
+        private readonly T value;
         private readonly Expression<Func<T, bool>> condition;
 
-        public ExpressionRule(T input, Expression<Func<T, bool>> condition)
+        public ExpressionRule(T value, Expression<Func<T, bool>> condition)
         {
-            this.input = input;
+            this.value = value;
             this.condition = condition;
         }
 
         public bool IsValid()
         {
             var func = condition.Compile();
-            return func(input);
+            return func(value);
         }
     }
 }

@@ -33,9 +33,10 @@ namespace ExcelReaderExtension.Infrastructure.Validation.Rules
 
         private static bool IsInvalidString(object propertyValue)
         {
-            if (propertyValue is string)
+            var data = propertyValue as string;
+            if (data != null)
             {
-                return string.IsNullOrWhiteSpace(propertyValue as string);
+                return string.IsNullOrWhiteSpace(data);
             }
             return false;
         }
