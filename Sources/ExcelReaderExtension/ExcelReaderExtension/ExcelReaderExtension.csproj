@@ -45,12 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\NotSupportedCastException.cs" />
+    <Compile Include="Exceptions\Trap\ThrowIfs.cs" />
     <Compile Include="Exceptions\ValidationErrorException.cs" />
     <Compile Include="Extensions\ExcelRangeExtension.cs" />
     <Compile Include="Infrastructure\Interface\IParse.cs" />
     <Compile Include="Infrastructure\Interface\IRuleBuilder.cs" />
     <Compile Include="Infrastructure\Interface\IValidationRule.cs" />
     <Compile Include="Infrastructure\Model\Cell.cs" />
+    <Compile Include="Infrastructure\Parse\NullableDateTimeParse.cs" />
     <Compile Include="Infrastructure\Parse\DefaultParse.cs" />
     <Compile Include="Infrastructure\RuleBuilder.cs" />
     <Compile Include="Infrastructure\Validation\Rules\DecimalOnlyRule.cs" />
