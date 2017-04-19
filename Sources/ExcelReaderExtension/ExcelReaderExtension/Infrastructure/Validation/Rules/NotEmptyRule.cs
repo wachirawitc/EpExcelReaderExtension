@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ExcelReaderExtension.Infrastructure.Validation.Rules
 {
-    public class NotEmptyRule : IValidationRule
+    internal class NotEmptyRule : IValidationRule
     {
         private readonly object value;
 

@@ -2,7 +2,7 @@
 
 namespace ExcelReaderExtension.Infrastructure.Validation.Rules
 {
-    public class DecimalOnlyRule : IValidationRule
+    internal class DecimalOnlyRule : IValidationRule
     {
         private readonly object value;
 

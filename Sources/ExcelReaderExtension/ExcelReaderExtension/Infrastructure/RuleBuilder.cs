@@ -13,19 +13,19 @@ namespace ExcelReaderExtension.Infrastructure
 {
     public class RuleBuilder<T> : IRuleBuilder<T>
     {
-        private readonly Cell model;
+        private readonly Cell<T> model;
         private readonly IParse<T> parse;
         private readonly ExcelRangeBase excelRange;
-        private readonly List<ValidationContext> validations;
+        private readonly List<ValidationContext<T>> validations;
 
         public RuleBuilder(ExcelRangeBase excelRange, IParse<T> parse)
         {
             this.excelRange = excelRange;
             this.parse = parse;
 
-            validations = new List<ValidationContext>();
+            validations = new List<ValidationContext<T>>();
 
-            model = new Cell
+            model = new Cell<T>
             {
                 Row = excelRange.Rows,
                 Column = excelRange.Columns,
@@ -48,7 +48,7 @@ namespace ExcelReaderExtension.Infrastructure
             return parse.Get();
         }
 
-        public IRuleBuilder<T> WithMessage(Expression<Func<Cell, string>> message)
+        public IRuleBuilder<T> WithMessage(Expression<Func<Cell<T>, string>> message)
         {
             if (validations.Any())
             {
@@ -59,20 +59,9 @@ namespace ExcelReaderExtension.Infrastructure
 
         #region Rules
 
-        public IRuleBuilder<T> Must(IValidationRule validationRule)
-        {
-            validations.Add(new ValidationContext
-            {
-                Rule = validationRule,
-                Message = cell => $"{cell.Address} is invalid rule."
-            });
-
-            return this;
-        }
-
         public IRuleBuilder<T> Contains(params T[] sources)
         {
-            validations.Add(new ValidationContext
+            validations.Add(new ValidationContext<T>
             {
                 Rule = new DefaultExpressionRule(() => sources.Contains(parse.Get())),
                 Message = cell => $"{cell.Address} is not contains."
@@ -83,7 +72,7 @@ namespace ExcelReaderExtension.Infrastructure
 
         public IRuleBuilder<T> NotNull()
         {
-            validations.Add(new ValidationContext
+            validations.Add(new ValidationContext<T>
             {
                 Rule = new NotNullRule(excelRange.Value),
                 Message = cell => $"{cell.Address} is not null."
@@ -94,7 +83,7 @@ namespace ExcelReaderExtension.Infrastructure
 
         public IRuleBuilder<T> NumericOnly()
         {
-            validations.Add(new ValidationContext
+            validations.Add(new ValidationContext<T>
             {
                 Rule = new NumericOnlyRule(excelRange.Value),
                 Message = cell => $"{cell.Address} is not numeric."
@@ -105,7 +94,7 @@ namespace ExcelReaderExtension.Infrastructure
 
         public IRuleBuilder<T> DecimalOnly()
         {
-            validations.Add(new ValidationContext
+            validations.Add(new ValidationContext<T>
             {
                 Rule = new DecimalOnlyRule(excelRange.Value),
                 Message = detail => $"{detail.Address} is not decimal."
@@ -116,7 +105,7 @@ namespace ExcelReaderExtension.Infrastructure
 
         public IRuleBuilder<T> Must(Expression<Func<T, bool>> condition)
         {
-            validations.Add(new ValidationContext
+            validations.Add(new ValidationContext<T>
             {
                 Rule = new ExpressionRule<T>(parse.Get(), condition),
                 Message = cell => $"{cell.Address} is invalid."
@@ -127,7 +116,7 @@ namespace ExcelReaderExtension.Infrastructure
 
         public IRuleBuilder<T> Must(Expression<Func<bool>> condition)
         {
-            validations.Add(new ValidationContext
+            validations.Add(new ValidationContext<T>
             {
                 Rule = new DefaultExpressionRule(condition),
                 Message = cell => $"{cell.Address} is invalid."
@@ -136,9 +125,20 @@ namespace ExcelReaderExtension.Infrastructure
             return this;
         }
 
+        public IRuleBuilder<T> Must(IValidationRule validationRule)
+        {
+            validations.Add(new ValidationContext<T>
+            {
+                Rule = validationRule,
+                Message = cell => $"{cell.Address} is invalid rule."
+            });
+
+            return this;
+        }
+
         public IRuleBuilder<T> NotEmpty()
         {
-            validations.Add(new ValidationContext
+            validations.Add(new ValidationContext<T>
             {
                 Rule = new NotEmptyRule(excelRange.Value),
                 Message = cell => $"{cell.Address} is not empty."

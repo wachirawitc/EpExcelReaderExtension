@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace ExcelReaderExtension.Infrastructure.Parse
 {
-    public class DefaultParse<T> : IParse<T>
+    internal class DefaultParse<T> : IParse<T>
     {
         private readonly ExcelRangeBase excelRange;
         private readonly Expression<Func<object, T>> function;

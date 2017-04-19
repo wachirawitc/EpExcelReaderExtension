@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ExcelReaderExtension.Exceptions.Trap
 {
-    public static class ThrowIfs
+    internal static class ThrowIfs
     {
         public static void NullOrEmpty<T>(List<T> sources, string name)
         {

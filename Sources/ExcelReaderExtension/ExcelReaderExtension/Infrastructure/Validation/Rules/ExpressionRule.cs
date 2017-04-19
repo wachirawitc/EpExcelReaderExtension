@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace ExcelReaderExtension.Infrastructure.Validation.Rules
 {
-    public class ExpressionRule<T> : IValidationRule
+    internal class ExpressionRule<T> : IValidationRule
     {
         private readonly T value;
         private readonly Expression<Func<T, bool>> condition;

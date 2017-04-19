@@ -5,10 +5,10 @@ using System.Linq.Expressions;
 
 namespace ExcelReaderExtension.Infrastructure.Validation
 {
-    public class ValidationContext
+    internal class ValidationContext<T>
     {
         public IValidationRule Rule { get; set; }
 
-        public Expression<Func<Cell, string>> Message { get; set; }
+        public Expression<Func<Cell<T>, string>> Message { get; set; }
     }
 }
