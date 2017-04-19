@@ -15,8 +15,8 @@ namespace ExcelReaderExtension.Infrastructure.Validation.Rules
 
         public bool IsValid()
         {
-            var func = condition.Compile();
-            return func();
+            var function = condition.Compile();
+            return function();
         }
     }
 }
