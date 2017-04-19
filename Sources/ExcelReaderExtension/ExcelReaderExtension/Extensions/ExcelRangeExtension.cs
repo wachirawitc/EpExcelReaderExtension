@@ -1,9 +1,9 @@
 ﻿using ExcelReaderExtension.Infrastructure;
 using ExcelReaderExtension.Infrastructure.Interface;
-using ExcelReaderExtension.Infrastructure.Parse;
 using OfficeOpenXml;
 using System;
 using System.Linq.Expressions;
+using ExcelReaderExtension.Infrastructure.Converter;
 
 namespace ExcelReaderExtension.Extensions
 {
@@ -11,34 +11,34 @@ namespace ExcelReaderExtension.Extensions
     {
         public static IRuleBuilder<T> Cast<T>(this ExcelRange range)
         {
-            return Cast(range, new DefaultParse<T>(range, null, null));
+            return Cast(range, new DefaultConverter<T>(range, null, null));
         }
 
         public static IRuleBuilder<T> Cast<T>(this ExcelRange range, Expression<Func<ExcelRangeBase, string>> error)
         {
-            return Cast(range, new DefaultParse<T>(range, null, error));
+            return Cast(range, new DefaultConverter<T>(range, null, error));
         }
 
         public static IRuleBuilder<T> Cast<T>(this ExcelRange range, Expression<Func<object, T>> function)
         {
-            return Cast(range, new DefaultParse<T>(range, function, null));
+            return Cast(range, new DefaultConverter<T>(range, function, null));
         }
 
         public static IRuleBuilder<T> Cast<T>(this ExcelRange range, Expression<Func<object, T>> function, Expression<Func<ExcelRangeBase, string>> error)
         {
-            return Cast(range, new DefaultParse<T>(range, function, error));
+            return Cast(range, new DefaultConverter<T>(range, function, error));
         }
 
-        public static IRuleBuilder<T> Cast<T>(this ExcelRange range, Expression<Func<object, IParse<T>>> function)
+        public static IRuleBuilder<T> Cast<T>(this ExcelRange range, Expression<Func<object, IConverter<T>>> function)
         {
             var compile = function.Compile();
 
             return Cast(range, compile(range.Value));
         }
 
-        public static IRuleBuilder<T> Cast<T>(this ExcelRange range, IParse<T> parse)
+        public static IRuleBuilder<T> Cast<T>(this ExcelRange range, IConverter<T> converter)
         {
-            return new RuleBuilder<T>(range, parse);
+            return new RuleBuilder<T>(range, converter);
         }
     }
 }

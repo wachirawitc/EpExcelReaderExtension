@@ -4,14 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace ExcelReaderExtension.Infrastructure.Parse
+namespace ExcelReaderExtension.Infrastructure.Converter
 {
-    public class NullableDateTimeParse : IParse<DateTime?>
+    public class NullableDateTimeConverter : IConverter<DateTime?>
     {
         private readonly object value;
         private readonly List<string> formats;
 
-        public NullableDateTimeParse(object value, List<string> formats)
+        public NullableDateTimeConverter(object value, List<string> formats)
         {
             ThrowIfs.NullOrEmpty(formats, nameof(formats));
 

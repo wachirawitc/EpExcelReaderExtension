@@ -9,6 +9,6 @@ namespace ExcelReaderExtension.Infrastructure.Validation
     {
         public IValidationRule Rule { get; set; }
 
-        public Expression<Func<Cell<T>, string>> Message { get; set; }
+        public Expression<Func<CellResource<T>, string>> Message { get; set; }
     }
 }

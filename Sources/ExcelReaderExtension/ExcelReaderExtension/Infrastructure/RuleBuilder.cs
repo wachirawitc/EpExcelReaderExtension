@@ -13,19 +13,19 @@ namespace ExcelReaderExtension.Infrastructure
 {
     public class RuleBuilder<T> : IRuleBuilder<T>
     {
-        private readonly Cell<T> model;
-        private readonly IParse<T> parse;
+        private readonly CellResource<T> resource;
+        private readonly IConverter<T> converter;
         private readonly ExcelRangeBase excelRange;
         private readonly List<ValidationContext<T>> validations;
 
-        public RuleBuilder(ExcelRangeBase excelRange, IParse<T> parse)
+        public RuleBuilder(ExcelRangeBase excelRange, IConverter<T> converter)
         {
             this.excelRange = excelRange;
-            this.parse = parse;
+            this.converter = converter;
 
             validations = new List<ValidationContext<T>>();
 
-            model = new Cell<T>
+            resource = new CellResource<T>
             {
                 Row = excelRange.Rows,
                 Column = excelRange.Columns,
@@ -41,14 +41,14 @@ namespace ExcelReaderExtension.Infrastructure
                 if (validation.Rule.IsValid() == false)
                 {
                     var function = validation.Message.Compile();
-                    throw new ValidationErrorException(function(model));
+                    throw new ValidationErrorException(function(resource));
                 }
             }
 
-            return parse.Get();
+            return converter.Get();
         }
 
-        public IRuleBuilder<T> WithMessage(Expression<Func<Cell<T>, string>> message)
+        public IRuleBuilder<T> WithMessage(Expression<Func<CellResource<T>, string>> message)
         {
             if (validations.Any())
             {
@@ -63,7 +63,7 @@ namespace ExcelReaderExtension.Infrastructure
         {
             validations.Add(new ValidationContext<T>
             {
-                Rule = new DefaultExpressionRule(() => sources.Contains(parse.Get())),
+                Rule = new DefaultExpressionRule(() => sources.Contains(converter.Get())),
                 Message = cell => $"{cell.Address} is not contains."
             });
 
@@ -107,7 +107,7 @@ namespace ExcelReaderExtension.Infrastructure
         {
             validations.Add(new ValidationContext<T>
             {
-                Rule = new ExpressionRule<T>(parse.Get(), condition),
+                Rule = new ExpressionRule<T>(converter.Get(), condition),
                 Message = cell => $"{cell.Address} is invalid."
             });
 

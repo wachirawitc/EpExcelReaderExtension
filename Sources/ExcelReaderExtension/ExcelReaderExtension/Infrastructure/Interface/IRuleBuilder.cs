@@ -6,7 +6,7 @@ namespace ExcelReaderExtension.Infrastructure.Interface
 {
     public interface IRuleBuilder<T>
     {
-        IRuleBuilder<T> WithMessage(Expression<Func<Cell<T>, string>> message);
+        IRuleBuilder<T> WithMessage(Expression<Func<CellResource<T>, string>> message);
 
         IRuleBuilder<T> NotNull();
 

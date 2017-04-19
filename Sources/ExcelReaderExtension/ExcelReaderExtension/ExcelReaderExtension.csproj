@@ -48,12 +48,12 @@
     <Compile Include="Exceptions\Trap\ThrowIfs.cs" />
     <Compile Include="Exceptions\ValidationErrorException.cs" />
     <Compile Include="Extensions\ExcelRangeExtension.cs" />
-    <Compile Include="Infrastructure\Interface\IParse.cs" />
+    <Compile Include="Infrastructure\Interface\IConverter.cs" />
     <Compile Include="Infrastructure\Interface\IRuleBuilder.cs" />
     <Compile Include="Infrastructure\Interface\IValidationRule.cs" />
-    <Compile Include="Infrastructure\Model\Cell.cs" />
-    <Compile Include="Infrastructure\Parse\NullableDateTimeParse.cs" />
-    <Compile Include="Infrastructure\Parse\DefaultParse.cs" />
+    <Compile Include="Infrastructure\Model\CellResource.cs" />
+    <Compile Include="Infrastructure\Converter\NullableDateTimeConverter.cs" />
+    <Compile Include="Infrastructure\Converter\DefaultConverter.cs" />
     <Compile Include="Infrastructure\RuleBuilder.cs" />
     <Compile Include="Infrastructure\Validation\Rules\DecimalOnlyRule.cs" />
     <Compile Include="Infrastructure\Validation\Rules\DefaultExpressionRule.cs" />

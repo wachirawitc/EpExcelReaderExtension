@@ -1,6 +1,6 @@
 ﻿namespace ExcelReaderExtension.Infrastructure.Interface
 {
-    public interface IParse<out T>
+    public interface IConverter<out T>
     {
         T Get();
     }

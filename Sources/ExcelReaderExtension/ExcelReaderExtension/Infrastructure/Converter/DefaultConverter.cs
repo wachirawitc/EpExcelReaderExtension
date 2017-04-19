@@ -4,15 +4,15 @@ using OfficeOpenXml;
 using System;
 using System.Linq.Expressions;
 
-namespace ExcelReaderExtension.Infrastructure.Parse
+namespace ExcelReaderExtension.Infrastructure.Converter
 {
-    internal class DefaultParse<T> : IParse<T>
+    internal class DefaultConverter<T> : IConverter<T>
     {
         private readonly ExcelRangeBase excelRange;
         private readonly Expression<Func<object, T>> function;
         private readonly Expression<Func<ExcelRangeBase, string>> errorMessage;
 
-        public DefaultParse(ExcelRangeBase excelRange,
+        public DefaultConverter(ExcelRangeBase excelRange,
             Expression<Func<object, T>> function,
             Expression<Func<ExcelRangeBase, string>> errorMessage)
         {
