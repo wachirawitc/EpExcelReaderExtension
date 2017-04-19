@@ -1,6 +1,6 @@
 ﻿namespace ExcelReaderExtension.Infrastructure.Model
 {
-    public class CellResource<T>
+    public class CellResource
     {
         public int Row { get; set; }
 

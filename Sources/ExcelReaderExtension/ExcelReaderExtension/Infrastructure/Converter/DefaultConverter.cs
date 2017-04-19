@@ -39,7 +39,7 @@ namespace ExcelReaderExtension.Infrastructure.Converter
             }
             catch (Exception)
             {
-                var message = $"{excelRange.Address} not supported cast type.";
+                var message = $"{excelRange.Address} cannot convert value.";
                 if (errorMessage != null)
                 {
                     var func = errorMessage.Compile();

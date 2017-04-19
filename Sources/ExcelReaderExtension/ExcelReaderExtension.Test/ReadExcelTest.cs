@@ -12,7 +12,7 @@ namespace ExcelReaderExtension.Test
         public void Test_ReadInt()
         {
             const int expected = 1;
-            const string filePath = @"E:\Source\ExcelReaderExtension\Sources\ExcelReaderExtension\ExcelReaderExtension.Test\DataSources\Examle1.xlsx";
+            const string filePath = @"C:\Users\Admin\Documents\Projects\ExPlusReader\Sources\ExcelReaderExtension\ExcelReaderExtension.Test\DataSources\Examle1.xlsx";
             var fileInfo = new FileInfo(filePath);
 
             using (var package = new ExcelPackage(fileInfo))

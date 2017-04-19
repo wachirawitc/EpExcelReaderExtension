@@ -1,9 +1,9 @@
 ﻿using ExcelReaderExtension.Infrastructure;
+using ExcelReaderExtension.Infrastructure.Converter;
 using ExcelReaderExtension.Infrastructure.Interface;
 using OfficeOpenXml;
 using System;
 using System.Linq.Expressions;
-using ExcelReaderExtension.Infrastructure.Converter;
 
 namespace ExcelReaderExtension.Extensions
 {
