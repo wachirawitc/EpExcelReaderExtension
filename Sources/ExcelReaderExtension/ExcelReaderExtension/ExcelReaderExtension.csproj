@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\NotSupportedCastException.cs" />
+    <Compile Include="Exceptions\NotSupportedCastTypeException.cs" />
     <Compile Include="Exceptions\Trap\ThrowIfs.cs" />
     <Compile Include="Exceptions\ValidationErrorException.cs" />
     <Compile Include="Extensions\ExcelRangeExtension.cs" />

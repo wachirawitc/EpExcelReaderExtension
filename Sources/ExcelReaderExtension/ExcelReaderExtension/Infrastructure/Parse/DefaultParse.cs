@@ -46,7 +46,7 @@ namespace ExcelReaderExtension.Infrastructure.Parse
                     message = func(excelRange);
                 }
 
-                throw new NotSupportedCastException(message);
+                throw new NotSupportedCastTypeException(message);
             }
         }
     }
