@@ -40,9 +40,8 @@ namespace ExcelReaderExtension.Infrastructure
             {
                 if (validation.Rule.IsValid() == false)
                 {
-                    var func = validation.Message.Compile();
-                    var message = func(model);
-                    throw new ValidationErrorException(message);
+                    var function = validation.Message.Compile();
+                    throw new ValidationErrorException(function(model));
                 }
             }
 
