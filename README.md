@@ -15,7 +15,9 @@ For example value in row 1 and column 1 is "1"
 
             }
 ```
+
 <br />
+
 **Basic parse value**<br />
 For example value in row 1 and column 1 is "21/04/2016"
 ```csharp
