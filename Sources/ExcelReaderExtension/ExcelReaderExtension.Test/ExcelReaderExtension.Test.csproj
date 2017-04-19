@@ -59,10 +59,21 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadExcelTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSources\Examle1.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExcelReaderExtension\ExcelReaderExtension.csproj">
+      <Project>{1b8b394d-9026-4344-904d-c1fd91792f07}</Project>
+      <Name>ExcelReaderExtension</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
