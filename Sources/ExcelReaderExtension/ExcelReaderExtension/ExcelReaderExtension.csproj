@@ -44,9 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\NotSupportedCastTypeException.cs" />
+    <Compile Include="Exceptions\ConverterException.cs" />
     <Compile Include="Exceptions\Trap\ThrowIfs.cs" />
-    <Compile Include="Exceptions\ValidationErrorException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Extensions\ExcelRangeExtension.cs" />
     <Compile Include="Infrastructure\Interface\IConverter.cs" />
     <Compile Include="Infrastructure\Interface\IRuleBuilder.cs" />

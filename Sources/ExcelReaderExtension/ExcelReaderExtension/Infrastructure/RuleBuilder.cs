@@ -41,7 +41,7 @@ namespace ExcelReaderExtension.Infrastructure
                 if (context.Rule.IsValid() == false)
                 {
                     var function = context.Message.Compile();
-                    throw new ValidationErrorException(function(resource));
+                    throw new ValidationException(function(resource));
                 }
             }
 

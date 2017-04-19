@@ -46,7 +46,7 @@ namespace ExcelReaderExtension.Infrastructure.Converter
                     message = func(excelRange);
                 }
 
-                throw new NotSupportedCastTypeException(message);
+                throw new ConverterException(message);
             }
         }
     }
