@@ -11,6 +11,7 @@ namespace ExcelReaderExtension.Test
         [Test]
         public void Test_ReadInt()
         {
+            const int expected = 1;
             const string filePath = @"E:\Source\ExcelReaderExtension\Sources\ExcelReaderExtension\ExcelReaderExtension.Test\DataSources\Examle1.xlsx";
             var fileInfo = new FileInfo(filePath);
 
@@ -23,8 +24,6 @@ namespace ExcelReaderExtension.Test
                     .NumericOnly()
                         .WithMessage(cell => $"{cell.Address} is support numeric only")
                     .Get();
-
-                const int expected = 1;
 
                 Assert.AreEqual(expected, value);
             }
