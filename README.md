@@ -1,3 +1,14 @@
-# ExcelReaderExtension
+Supporter extension for EPPlus to read and parse value in cell with condition.
+```csharp
+            using (var package = new ExcelPackage(fileInfo))
+            {
+                var worksheet = package.Workbook.Worksheets[1];
 
-Extension for read data in excel using EPPlus
+                int value = worksheet.Cells[1, 1]
+                    .Cast<int>()
+                    .NumericOnly()
+                        .WithMessage(cell => $"{cell.Address} is support numeric only")
+                    .Get();
+
+            }
+```
