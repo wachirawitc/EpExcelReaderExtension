@@ -34,28 +34,6 @@ namespace ExcelReaderExtension.Infrastructure
             };
         }
 
-        public IRuleBuilder<T> Must(IValidationRule validationRule)
-        {
-            validations.Add(new ValidationContext
-            {
-                Rule = validationRule,
-                Message = cell => $"{cell.Address} is invalid rule."
-            });
-
-            return this;
-        }
-
-        public IRuleBuilder<T> Contains(params T[] sources)
-        {
-            validations.Add(new ValidationContext
-            {
-                Rule = new DefaultExpressionRule(() => sources.Contains(parse.Get())),
-                Message = cell => $"{cell.Address} is not contains."
-            });
-
-            return this;
-        }
-
         public T Get()
         {
             foreach (var validation in validations)
@@ -77,6 +55,30 @@ namespace ExcelReaderExtension.Infrastructure
             {
                 validations.Last().Message = message;
             }
+            return this;
+        }
+
+        #region Rules
+
+        public IRuleBuilder<T> Must(IValidationRule validationRule)
+        {
+            validations.Add(new ValidationContext
+            {
+                Rule = validationRule,
+                Message = cell => $"{cell.Address} is invalid rule."
+            });
+
+            return this;
+        }
+
+        public IRuleBuilder<T> Contains(params T[] sources)
+        {
+            validations.Add(new ValidationContext
+            {
+                Rule = new DefaultExpressionRule(() => sources.Contains(parse.Get())),
+                Message = cell => $"{cell.Address} is not contains."
+            });
+
             return this;
         }
 
@@ -145,5 +147,7 @@ namespace ExcelReaderExtension.Infrastructure
 
             return this;
         }
+
+        #endregion Rules
     }
 }
