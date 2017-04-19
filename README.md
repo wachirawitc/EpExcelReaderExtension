@@ -1,3 +1,4 @@
+Supporter extension for EPPlus to read and parse value in cell with condition.
 ```csharp
             using (var package = new ExcelPackage(fileInfo))
             {
