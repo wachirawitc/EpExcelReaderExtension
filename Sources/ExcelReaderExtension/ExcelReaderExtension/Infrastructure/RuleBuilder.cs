@@ -39,7 +39,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = validationRule,
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is invalid rule."
+                Message = cell => $"{cell.Address} is invalid rule."
             });
 
             return this;
@@ -50,7 +50,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = new DefaultExpressionRule(() => sources.Contains(parse.Get())),
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is not contains."
+                Message = cell => $"{cell.Address} is not contains."
             });
 
             return this;
@@ -85,7 +85,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = new NotNullRule(excelRange.Value),
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is not null."
+                Message = cell => $"{cell.Address} is not null."
             });
 
             return this;
@@ -96,7 +96,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = new NumericOnlyRule(excelRange.Value),
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is numeric only."
+                Message = cell => $"{cell.Address} is not numeric."
             });
 
             return this;
@@ -107,7 +107,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = new DecimalOnlyRule(excelRange.Value),
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is decimal only."
+                Message = detail => $"{detail.Address} is not decimal."
             });
 
             return this;
@@ -118,7 +118,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = new ExpressionRule<T>(parse.Get(), condition),
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is invalid."
+                Message = cell => $"{cell.Address} is invalid."
             });
 
             return this;
@@ -129,7 +129,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = new DefaultExpressionRule(condition),
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is invalid."
+                Message = cell => $"{cell.Address} is invalid."
             });
 
             return this;
@@ -140,7 +140,7 @@ namespace ExcelReaderExtension.Infrastructure
             validations.Add(new ValidationContext
             {
                 Rule = new NotEmptyRule(excelRange.Value),
-                Message = detail => $"Row {detail.Row} and Column {detail.Column} is empty."
+                Message = cell => $"{cell.Address} is not empty."
             });
 
             return this;
