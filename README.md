@@ -3,7 +3,7 @@ Supporter extension for EPPlus to read and parse value in cell with condition.
 **Basic**<br />
 For example value in row 1 and column 1 is "1"
 ```csharp
-            using (var package = new ExcelPackage(fileInfo))
+            using (var package = new ExcelPackage(excelfile))
             {
                 var worksheet = package.Workbook.Worksheets[1];
 
@@ -21,7 +21,7 @@ For example value in row 1 and column 1 is "1"
 **Custom convert value**<br />
 For example value in row 1 and column 1 is "21/04/2016"
 ```csharp
-            using (var package = new ExcelPackage(fileInfo))
+            using (var package = new ExcelPackage(excelfile))
             {
                 var worksheet = package.Workbook.Worksheets[1];
 
