@@ -47,7 +47,7 @@ For example value in row 1 and column 1 is "21/04/2016"
             
 ```
 
-Special convert please implement **IConverter<T>** interface<br />
+Special convert please implement **IConverter** interface<br />
 For example
 ```csharp
     public class NullableDateTimeConverter : IConverter<DateTime?>
@@ -81,3 +81,16 @@ For example
         }
     }
 ```
+When you use
+```csharp
+            var supportDateFormat = new List<string> { "dd/MM/yyyy" };
+            using (var package = new ExcelPackage(fileInfo))
+            {
+                var worksheet = package.Workbook.Worksheets[1];
+
+                var actual = worksheet.Cells[1, 1]
+                    .Cast<DateTime?>(value => new NullableDateTimeConverter(value, supportDateFormat))
+                    .Get();
+            }
+```
+
