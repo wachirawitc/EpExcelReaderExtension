@@ -57,8 +57,6 @@ For example
 
         public NullableDateTimeConverter(object value, List<string> formats)
         {
-            ThrowIfs.NullOrEmpty(formats, nameof(formats));
-
             this.value = value;
             this.formats = formats;
         }
