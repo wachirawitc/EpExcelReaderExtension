@@ -62,6 +62,9 @@
     <Compile Include="ReadExcelTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSources\Test_Valid_ReadNullableDateTime.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DataSources\Test_Valid_ReadInt.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

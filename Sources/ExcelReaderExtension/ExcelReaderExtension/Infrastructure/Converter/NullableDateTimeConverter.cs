@@ -27,7 +27,12 @@ namespace ExcelReaderExtension.Infrastructure.Converter
             }
 
             DateTime outTime;
-            var isSuccess = DateTime.TryParseExact(value.ToString(), formats.ToArray(), CultureInfo.InvariantCulture, DateTimeStyles.None, out outTime);
+            var isSuccess = DateTime.TryParseExact(value.ToString(),
+                formats.ToArray(),
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out outTime);
+
             return isSuccess == false ? (DateTime?)null : outTime;
         }
     }
