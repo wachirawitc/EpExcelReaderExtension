@@ -62,7 +62,7 @@
     <Compile Include="ReadExcelTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataSources\Examle1.xlsx">
+    <None Include="DataSources\Test_Valid_ReadInt.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

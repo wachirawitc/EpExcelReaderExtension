@@ -10,10 +10,10 @@ namespace ExcelReaderExtension.Test
     public class ReadExcelTest
     {
         [Test]
-        public void Test_ReadInt()
+        public void Test_Valid_ReadInt()
         {
             const int expected = 1;
-            const string filePath = @"\DataSources\Examle1.xlsx";
+            const string filePath = @"\DataSources\Test_Valid_ReadInt.xlsx";
 
             string projectPath = AppDomain.CurrentDomain.BaseDirectory;
             var fileInfo = new FileInfo(projectPath + filePath);
