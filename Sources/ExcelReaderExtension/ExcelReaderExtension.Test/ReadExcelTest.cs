@@ -1,6 +1,7 @@
 ﻿using ExcelReaderExtension.Extensions;
 using NUnit.Framework;
 using OfficeOpenXml;
+using System;
 using System.IO;
 
 namespace ExcelReaderExtension.Test
@@ -12,8 +13,10 @@ namespace ExcelReaderExtension.Test
         public void Test_ReadInt()
         {
             const int expected = 1;
-            const string filePath = @"C:\Users\Admin\Documents\Projects\ExPlusReader\Sources\ExcelReaderExtension\ExcelReaderExtension.Test\DataSources\Examle1.xlsx";
-            var fileInfo = new FileInfo(filePath);
+            const string filePath = @"\DataSources\Examle1.xlsx";
+
+            string projectPath = AppDomain.CurrentDomain.BaseDirectory;
+            var fileInfo = new FileInfo(projectPath + filePath);
 
             using (var package = new ExcelPackage(fileInfo))
             {
