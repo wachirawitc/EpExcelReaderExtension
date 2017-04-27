@@ -46,3 +46,48 @@ For example value in row 1 and column 1 is "21/04/2016"
             }
             
 ```
+
+On special convert please implement **IConverter** interface.<br />
+```csharp
+    public class NullableDateTimeConverter : IConverter<DateTime?>
+    {
+        private readonly object value;
+        private readonly List<string> formats;
+
+        public NullableDateTimeConverter(object value, List<string> formats)
+        {
+            this.value = value;
+            this.formats = formats;
+        }
+
+        public DateTime? Get()
+        {
+            if (value == null)
+            {
+                return null;
+            }
+
+            DateTime outTime;
+            var isSuccess = DateTime.TryParseExact(value.ToString(),
+                formats.ToArray(),
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out outTime);
+
+            return isSuccess == false ? (DateTime?)null : outTime;
+        }
+    }
+```
+When you use
+```csharp
+            var supportDateFormat = new List<string> { "dd/MM/yyyy" };
+            using (var package = new ExcelPackage(fileInfo))
+            {
+                var worksheet = package.Workbook.Worksheets[1];
+
+                var actual = worksheet.Cells[1, 1]
+                    .Cast<DateTime?>(value => new NullableDateTimeConverter(value, supportDateFormat))
+                    .Get();
+            }
+```
+
