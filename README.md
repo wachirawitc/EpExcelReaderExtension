@@ -47,8 +47,7 @@ For example value in row 1 and column 1 is "21/04/2016"
             
 ```
 
-Special convert please implement **IConverter** interface<br />
-For example
+On special convert please implement **IConverter** interface.<br />
 ```csharp
     public class NullableDateTimeConverter : IConverter<DateTime?>
     {
